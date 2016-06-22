@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 
 app = Flask(__name__)
 
@@ -35,8 +35,13 @@ def about():
     return 'The about page'
 
 
-@app.route('/login')
-def login(): pass
+@app.route('/login', methods=['GET', 'POST'])
+# if GET present HEAD and OPTIONS added automatically
+def login():
+    if request.method == 'POST':
+        return 'Do the login'
+    else:
+        return 'Show login form'
 
 
 @app.route('/urlbuilding')
