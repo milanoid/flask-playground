@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, render_template
 
 app = Flask(__name__)
 
@@ -48,3 +48,14 @@ def login():
 def urlbuilding():
     with app.test_request_context():
         return url_for('show_user_profile', username='John Doe')
+
+
+@app.route('/getstaticurl')
+def get_static_url():
+    return url_for('static', filename='style.css')
+
+
+@app.route('/hello')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello_world_template.html', name=name)
