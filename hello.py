@@ -48,3 +48,8 @@ def login():
 def urlbuilding():
     with app.test_request_context():
         return url_for('show_user_profile', username='John Doe')
+
+
+@app.route('/getstaticurl')
+def get_static_url():
+    return url_for('static', filename='style.css')
