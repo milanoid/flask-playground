@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
@@ -33,3 +33,13 @@ def projects():
 @app.route('/about')
 def about():
     return 'The about page'
+
+
+@app.route('/login')
+def login(): pass
+
+
+@app.route('/urlbuilding')
+def urlbuilding():
+    with app.test_request_context():
+        return url_for('show_user_profile', username='John Doe')
